@@ -1,0 +1,48 @@
+SQLCMD -S SERVERNAME -E -Q "SELECT Col1,Col2,Col3 FROM MyDatabase.dbo.MyTable"
+-s "," -o "D:\MyData.csv" 
+
+SQLCMD	- SQL Command Line Interface
+
+Parameters/Arguments
+
+-s	Server Name
+-d	Default database instance for current command line statement
+-e	Security Authenication Profile (-e) indicates Windows Authentincation
+-q	Inline select statement [select * from table]
+-q		with stored procedure [exec procedure @variable=$(parameters)]
+-s	The second (-s) sets output delimiter [-s "," comma for csv files]
+-o	Full output path and filename
+-w	Remove trailing spaces from columns
+-h-1	Remove header column
+
+----------
+Server Authentification
+-u	Username
+-p	Password
+
+SQLCMD –S <<ServerName>> –E –Q "EXEC AdventureWorks2008R2.dbo.uspExport"
+–s "," –o "C:\DataSqlCmd.csv" –h–1
+
+Where, -S specifies Database Server Name,
+-E specifies to use Windows Authentication,
+-Q specifies the query to be executed against server,
+-s specifies column separator character,
+-o specifies the destination file and,
+-h-1 specifies that column headers should not be exported.
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.AwardDetailByYear @ThisYear = '2022' " -s "," -o "C:\SQLOutput\AwardDetailByYear.csv"
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.AwardsByAgency @AgencyCode = '12' " -s "," -o "C:\SQLOutput\AwardsByAgency.csv" 
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.SubAgencies" -s "," -o "C:\SQLOutput\SubAgencies.csv"
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.AgencyList" -s "," -o "C:\SQLOutput\AgencyList.csv"
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.SubAwardSummary" -s "," -o "C:\SQLOutput\SubAwardSummary.csv"
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.sp_AgencySummary" -s "," -o "C:\SQLOutput\AgencySummary.csv"
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.sp_SubAgencySummary" -s "," -o "C:\SQLOutput\SubAgencySummary.csv"
+
+
+sqlcmd -s STUDIO-DESKTOP -e -d portfolio -q "EXEC Portfolio.dbo.sp_SummarizeBySubagency" -s "," -o "C:\SQLOutput\SummarizeSubAgency.csv"
